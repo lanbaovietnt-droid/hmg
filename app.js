@@ -130,6 +130,10 @@ function getSummary(name,score){
 }
 
 document.querySelector("#startBtn").onclick=newTest;
+document.querySelector("#secretBtn").onclick=()=>{
+  const msg=document.querySelector("#secretMessage");
+  msg.classList.toggle("show");
+};
 document.querySelector("#againBtn").onclick=newTest;
 document.querySelector("#resetBtn").onclick=()=>show("home");
 document.querySelector("#nextBtn").onclick=()=>{
@@ -140,4 +144,108 @@ document.querySelector("#shareBtn").onclick=async()=>{
   const text=`HMG — Phân tích tâm lý\nĐiểm nổi bật: ${document.querySelector("#resultTitle").textContent}`;
   try{await navigator.clipboard.writeText(text);document.querySelector("#shareBtn").textContent="Đã sao chép ✓";setTimeout(()=>document.querySelector("#shareBtn").textContent="Chia sẻ kết quả",1500)}
   catch{alert(text)}
+};
+
+// --- HMG: các chỉ số bổ sung ---
+const EXTRA_QUESTIONS = [
+  ["Khi bị chọc giận, bạn khó kiềm chế lời nói hoặc hành động.","Rất đúng","Khá đúng","Phân vân","Không đúng lắm","Hoàn toàn không"],
+  ["Bạn mất nhiều thời gian mới nguôi sau một cơn tức giận.","Rất đúng","Khá đúng","Phân vân","Không đúng lắm","Hoàn toàn không"],
+  ["Bạn dễ bùng nổ cảm xúc khi cảm thấy bị xúc phạm.","Rất đúng","Khá đúng","Phân vân","Không đúng lắm","Hoàn toàn không"],
+  ["Bạn thường hành động theo cảm xúc ngay lập tức rồi mới nghĩ đến hậu quả.","Rất đúng","Khá đúng","Phân vân","Không đúng lắm","Hoàn toàn không"],
+  ["Bạn có những lúc cảm thấy buồn, trống rỗng hoặc mất hứng thú kéo dài.","Rất thường xuyên","Thường xuyên","Đôi khi","Hiếm khi","Hầu như không"],
+  ["Bạn thường lo lắng quá mức hoặc khó kiểm soát sự lo lắng.","Rất thường xuyên","Thường xuyên","Đôi khi","Hiếm khi","Hầu như không"],
+  ["Bạn gặp khó khăn đáng kể với giấc ngủ vì suy nghĩ hoặc cảm xúc.","Rất thường xuyên","Thường xuyên","Đôi khi","Hiếm khi","Hầu như không"],
+  ["Những cảm xúc tiêu cực làm ảnh hưởng rõ rệt đến học tập, công việc hoặc các mối quan hệ.","Rất nhiều","Khá nhiều","Một phần","Ít","Hầu như không"],
+  ["Bạn thường có những suy nghĩ tiêu cực lặp đi lặp lại rất khó dừng lại.","Rất thường xuyên","Thường xuyên","Đôi khi","Hiếm khi","Hầu như không"],
+  ["Bạn cảm thấy khó kiểm soát một số ham muốn hoặc hành vi của mình dù biết chúng có thể gây rắc rối.","Rất đúng","Khá đúng","Phân vân","Không đúng lắm","Hoàn toàn không"],
+  ["Bạn thường bị cuốn vào những suy nghĩ hoặc ham muốn tình dục đến mức làm mất tập trung hoặc ảnh hưởng sinh hoạt.","Rất thường xuyên","Thường xuyên","Đôi khi","Hiếm khi","Hầu như không"],
+  ["Khi tức giận, bạn vẫn có thể dừng lại và chọn cách phản ứng an toàn.","Rất dễ","Khá dễ","Ở mức vừa","Khá khó","Rất khó"]
+];
+
+// Thay cách chọn câu để mỗi lượt có cả nhóm tính cách và nhóm chỉ số bổ sung.
+const ORIGINAL_NEW_TEST = newTest;
+newTest = function(){
+  const pool = shuffle([...QUESTION_BANK, ...EXTRA_QUESTIONS]);
+  questions = pool.slice(0,24);
+  index=0; selected=-1; answers=[];
+  show("quiz"); renderQuestion();
+};
+
+const EXTRA_INDEX = {
+  anger:["Mức độ nóng nảy",[0,1,2,11],true],
+  angerIntensity:["Mức độ tức giận",[1,2,11],true],
+  impulsive:["Bốc đồng",[3],true],
+  sexual:["Xu hướng ham muốn",[9,10],true],
+  mental:["Dấu hiệu cần lưu ý",[4,5,6,7,8],true]
+};
+
+const OLD_FINISH = finish;
+finish = function(){
+  const raw=new Array(7).fill(0), count=new Array(7).fill(0);
+  questions.forEach((q,qi)=>{
+    const answer=answers[qi] ?? 2;
+    const value=(4-answer)/4;
+    const originalIndex=QUESTION_BANK.indexOf(q);
+    if(originalIndex>=0){
+      TRAITS.forEach((t,ti)=>{
+        if(t.keys.includes(originalIndex)){
+          raw[ti]+=t.invert?1-value:value; count[ti]++;
+        }
+      });
+    }
+  });
+  currentScores=raw.map((v,i)=>Math.round((v/(count[i]||1))*100));
+  renderResult();
+};
+
+function extraScore(key){
+  const cfg=EXTRA_INDEX[key];
+  let total=0, n=0;
+  questions.forEach((q,qi)=>{
+    const extraIndex=EXTRA_QUESTIONS.indexOf(q);
+    if(cfg[1].includes(extraIndex)){
+      const answer=answers[qi] ?? 2;
+      total += (4-answer)/4;
+      n++;
+    }
+  });
+  return Math.round((total/(n||1))*100);
+}
+
+const OLD_RENDER_RESULT = renderResult;
+renderResult = function(){
+  OLD_RENDER_RESULT();
+  const bars=document.querySelector("#resultBars");
+  const extra=[
+    ["Mức độ nóng nảy",extraScore("anger")],
+    ["Mức độ tức giận",extraScore("angerIntensity")],
+    ["Bốc đồng",extraScore("impulsive")],
+    ["Xu hướng ham muốn",extraScore("sexual")]
+  ];
+  const heading=document.createElement("div");
+  heading.className="extra-heading";
+  heading.textContent="Chỉ số bổ sung";
+  bars.appendChild(heading);
+  extra.forEach(([name,score])=>{
+    const row=document.createElement("div"); row.className="bar-row extra-row";
+    row.innerHTML=`<div class="bar-label"><span>${name}</span><span>${score}%</span></div><div class="bar-bg"><div class="bar-fill" style="width:${score}%"></div></div>`;
+    bars.appendChild(row);
+  });
+
+  const mental=extraScore("mental");
+  const box=document.createElement("div");
+  box.className="mental-screening";
+  let title, text;
+  if(mental<30){
+    title="Chưa thấy dấu hiệu nổi bật trong bài sàng lọc";
+    text="Các câu trả lời hiện tại chưa cho thấy nhiều dấu hiệu đáng lưu ý. Đây không phải là kết luận rằng bạn chắc chắn không có vấn đề tâm lý.";
+  } else if(mental<60){
+    title="Có một số dấu hiệu cần theo dõi";
+    text="Một vài biểu hiện cảm xúc hoặc lo âu có thể đang xuất hiện. Nếu chúng kéo dài hoặc ảnh hưởng sinh hoạt, bạn nên cân nhắc trao đổi với chuyên gia tâm lý.";
+  } else {
+    title="Có nhiều dấu hiệu nên được đánh giá thêm";
+    text="Bài sàng lọc cho thấy một số biểu hiện có thể đáng lưu ý. HMG không thể chẩn đoán bệnh tâm lý; nếu các biểu hiện kéo dài, gây khổ sở hoặc ảnh hưởng cuộc sống, hãy tìm chuyên gia sức khỏe tâm thần để được đánh giá phù hợp.";
+  }
+  box.innerHTML=`<div class="screening-badge">SÀNG LỌC THAM KHẢO • ${mental}%</div><h3>${title}</h3><p>${text}</p><small>Không dùng kết quả này để tự chẩn đoán bệnh.</small>`;
+  bars.appendChild(box);
 };
