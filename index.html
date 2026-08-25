@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#0797d5">
+  <title>HMG — Phân tích tâm lý</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="bg-orb orb-a"></div>
+  <div class="bg-orb orb-b"></div>
+
+  <main class="app">
+    <header class="topbar">
+      <div class="brand">
+        <div class="logo">HMG</div>
+        <div>
+          <h1>HMG</h1>
+          <p>Phân tích tâm lý</p>
+        </div>
+      </div>
+      <button id="resetBtn" class="ghost-btn" type="button">Làm lại</button>
+    </header>
+
+    <section id="home" class="screen active">
+      <div class="hero-card">
+        <span class="pill">TRẮC NGHIỆM CÁ NHÂN</span>
+        <h2>Hiểu bản thân<br><span>theo cách của bạn.</span></h2>
+        <p>HMG đưa ra các câu hỏi thay đổi liên tục để tìm hiểu xu hướng tính cách, cảm xúc và cách bạn phản ứng trong những tình huống khác nhau.</p>
+        <div class="features">
+          <div><b>01</b><span>Câu hỏi ngẫu nhiên</span></div>
+          <div><b>02</b><span>Phân tích nhiều chiều</span></div>
+          <div><b>03</b><span>Kết quả dễ hiểu</span></div>
+        </div>
+        <button id="startBtn" class="primary-btn" type="button">Bắt đầu phân tích <span>→</span></button>
+        <small>Kết quả chỉ mang tính tham khảo, không thay thế đánh giá chuyên môn.</small>
+      </div>
+    </section>
+
+    <section id="quiz" class="screen">
+      <div class="quiz-card">
+        <div class="quiz-meta">
+          <span id="questionCount">Câu 1 / 20</span>
+          <span id="percent">5%</span>
+        </div>
+        <div class="progress"><div id="progressBar"></div></div>
+        <div class="question-wrap">
+          <div class="question-number" id="questionNumber">01</div>
+          <h2 id="questionText"></h2>
+          <p>Chọn mức độ phù hợp nhất với bạn.</p>
+        </div>
+        <div id="answers" class="answers"></div>
+        <button id="nextBtn" class="primary-btn next" type="button" disabled>Tiếp tục <span>→</span></button>
+      </div>
+    </section>
+
+    <section id="result" class="screen">
+      <div class="result-card">
+        <span class="pill">KẾT QUẢ HMG</span>
+        <h2>Chân dung tâm lý của bạn</h2>
+        <p class="result-intro">Dựa trên các lựa chọn trong bài làm, đây là những xu hướng nổi bật nhất.</p>
+        <div id="resultBars"></div>
+        <div class="summary">
+          <div class="summary-icon">✦</div>
+          <div>
+            <h3 id="resultTitle"></h3>
+            <p id="resultText"></p>
+          </div>
+        </div>
+        <div class="result-actions">
+          <button id="againBtn" class="primary-btn" type="button">Làm bài khác</button>
+          <button id="shareBtn" class="secondary-btn" type="button">Chia sẻ kết quả</button>
+        </div>
+        <small>HMG không chẩn đoán bệnh lý tâm thần. Nếu bạn đang gặp khó khăn nghiêm trọng, hãy tìm đến chuyên gia phù hợp.</small>
+      </div>
+    </section>
+  </main>
+
+  <footer>HMG • Personal Psychology Experience</footer>
+  <script src="app.js"></script>
+</body>
+</html>
