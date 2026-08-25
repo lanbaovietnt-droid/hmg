@@ -165,37 +165,20 @@ const EXTRA_QUESTIONS = [
 // Thay cách chọn câu để mỗi lượt có cả nhóm tính cách và nhóm chỉ số bổ sung.
 const ORIGINAL_NEW_TEST = newTest;
 newTest = function(){
-  const pool = shuffle([...QUESTION_BANK, ...EXTRA_QUESTIONS]);
-  questions = pool.slice(0,24);
+  // Mỗi lượt luôn có đủ nhóm câu hỏi bổ sung để chỉ số nóng nảy/tức giận xuất hiện.
+  // 12 câu tính cách được chọn ngẫu nhiên + toàn bộ 12 câu sàng lọc bổ sung.
+  questions = shuffle(QUESTION_BANK).slice(0,12).concat(shuffle(EXTRA_QUESTIONS));
+  questions = shuffle(questions);
   index=0; selected=-1; answers=[];
   show("quiz"); renderQuestion();
 };
 
 const EXTRA_INDEX = {
-  anger:["Mức độ nóng nảy",[0,1,2,11],true],
-  angerIntensity:["Mức độ tức giận",[1,2,11],true],
-  impulsive:["Bốc đồng",[3],true],
-  sexual:["Xu hướng ham muốn",[9,10],true],
-  mental:["Dấu hiệu cần lưu ý",[4,5,6,7,8],true]
-};
-
-const OLD_FINISH = finish;
-finish = function(){
-  const raw=new Array(7).fill(0), count=new Array(7).fill(0);
-  questions.forEach((q,qi)=>{
-    const answer=answers[qi] ?? 2;
-    const value=(4-answer)/4;
-    const originalIndex=QUESTION_BANK.indexOf(q);
-    if(originalIndex>=0){
-      TRAITS.forEach((t,ti)=>{
-        if(t.keys.includes(originalIndex)){
-          raw[ti]+=t.invert?1-value:value; count[ti]++;
-        }
-      });
-    }
-  });
-  currentScores=raw.map((v,i)=>Math.round((v/(count[i]||1))*100));
-  renderResult();
+  anger:["Mức độ nóng nảy",[0,1,2],false],
+  angerIntensity:["Mức độ tức giận",[1,2],false],
+  impulsive:["Bốc đồng",[3],false],
+  sexual:["Xu hướng ham muốn",[9,10],false],
+  mental:["Dấu hiệu cần lưu ý",[4,5,6,7,8],false]
 };
 
 function extraScore(key){
@@ -205,8 +188,10 @@ function extraScore(key){
     const extraIndex=EXTRA_QUESTIONS.indexOf(q);
     if(cfg[1].includes(extraIndex)){
       const answer=answers[qi] ?? 2;
-      total += (4-answer)/4;
-      n++;
+      let value=(4-answer)/4;
+      // Câu 11 đo khả năng tự dừng khi tức giận nên điểm cao = ít nóng giận.
+      if(extraIndex===11) value=1-value;
+      total += value; n++;
     }
   });
   return Math.round((total/(n||1))*100);
@@ -215,26 +200,28 @@ function extraScore(key){
 const OLD_RENDER_RESULT = renderResult;
 renderResult = function(){
   OLD_RENDER_RESULT();
-  const bars=document.querySelector("#resultBars");
+  const boxWrap=document.querySelector("#extraIndicators");
+  boxWrap.innerHTML="";
+  const heading=document.createElement("div");
+  heading.className="extra-heading";
+  heading.textContent="Chỉ số cảm xúc & hành vi";
+  boxWrap.appendChild(heading);
+
   const extra=[
     ["Mức độ nóng nảy",extraScore("anger")],
     ["Mức độ tức giận",extraScore("angerIntensity")],
     ["Bốc đồng",extraScore("impulsive")],
     ["Xu hướng ham muốn",extraScore("sexual")]
   ];
-  const heading=document.createElement("div");
-  heading.className="extra-heading";
-  heading.textContent="Chỉ số bổ sung";
-  bars.appendChild(heading);
   extra.forEach(([name,score])=>{
     const row=document.createElement("div"); row.className="bar-row extra-row";
     row.innerHTML=`<div class="bar-label"><span>${name}</span><span>${score}%</span></div><div class="bar-bg"><div class="bar-fill" style="width:${score}%"></div></div>`;
-    bars.appendChild(row);
+    boxWrap.appendChild(row);
   });
 
   const mental=extraScore("mental");
-  const box=document.createElement("div");
-  box.className="mental-screening";
+  const screening=document.createElement("div");
+  screening.className="mental-screening";
   let title, text;
   if(mental<30){
     title="Chưa thấy dấu hiệu nổi bật trong bài sàng lọc";
@@ -246,6 +233,6 @@ renderResult = function(){
     title="Có nhiều dấu hiệu nên được đánh giá thêm";
     text="Bài sàng lọc cho thấy một số biểu hiện có thể đáng lưu ý. HMG không thể chẩn đoán bệnh tâm lý; nếu các biểu hiện kéo dài, gây khổ sở hoặc ảnh hưởng cuộc sống, hãy tìm chuyên gia sức khỏe tâm thần để được đánh giá phù hợp.";
   }
-  box.innerHTML=`<div class="screening-badge">SÀNG LỌC THAM KHẢO • ${mental}%</div><h3>${title}</h3><p>${text}</p><small>Không dùng kết quả này để tự chẩn đoán bệnh.</small>`;
-  bars.appendChild(box);
+  screening.innerHTML=`<div class="screening-badge">SÀNG LỌC THAM KHẢO • ${mental}%</div><h3>${title}</h3><p>${text}</p><small>Không dùng kết quả này để tự chẩn đoán bệnh.</small>`;
+  boxWrap.appendChild(screening);
 };
