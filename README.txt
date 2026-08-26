@@ -1,12 +1,12 @@
-# HMG — Phân tích tâm lý
+HMG — KIỂM TRA LỐP TRONG TÌNH YÊU
 
-Ứng dụng web độc lập, không cần backend và không cần cài thư viện.
+Bản này thay toàn bộ nội dung thành bài kiểm tra “lốp” trong tình yêu.
+5 kết quả duy nhất:
+1. Người
+2. Hơi Lốp
+3. Lốp
+4. Lốp Trưởng
+5. Siêu Lốp
 
-## Chạy
-Mở `index.html` bằng trình duyệt hoặc dùng VS Code Live Server.
-
-## Đưa lên máy khác
-Toàn bộ app nằm trong thư mục này. Có thể đưa thư mục lên GitHub Pages, Netlify, Vercel hoặc bất kỳ web hosting tĩnh nào.
-
-## Lưu ý
-Đây là trải nghiệm trắc nghiệm mang tính tham khảo, không phải công cụ chẩn đoán tâm lý/lâm sàng.
+Ứng dụng chạy độc lập bằng HTML/CSS/JS, phù hợp GitHub Pages.
+Lưu ý: kết quả mang tính giải trí, không phải công cụ chẩn đoán tâm lý.
