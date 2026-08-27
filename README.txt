@@ -1,12 +1,10 @@
-HMG — KIỂM TRA LỐP TRONG TÌNH YÊU
+HMG — HỒ SƠ PHÁ ÁN
 
-Bản này thay toàn bộ nội dung thành bài kiểm tra “lốp” trong tình yêu.
-5 kết quả duy nhất:
-1. Người
-2. Hơi Lốp
-3. Lốp
-4. Lốp Trưởng
-5. Siêu Lốp
+Bản cập nhật:
+- Có nhiều ảnh nhân vật AI mô phỏng khác nhau.
+- Mỗi hồ sơ nhân vật hiển thị ảnh, tên đầy đủ, vai trò và thông tin cơ bản.
+- Ảnh được gắn nhãn AI MÔ PHỎNG — KHÔNG PHẢI NGƯỜI THẬT.
+- Mỗi vụ án có nạn nhân, manh mối, nhân vật liên quan, 5 nhánh điều tra và phần chọn đáp án.
 
-Ứng dụng chạy độc lập bằng HTML/CSS/JS, phù hợp GitHub Pages.
-Lưu ý: kết quả mang tính giải trí, không phải công cụ chẩn đoán tâm lý.
+Chạy: mở index.html bằng trình duyệt hoặc dùng VS Code Live Server.
+Không cần cài thư viện.
