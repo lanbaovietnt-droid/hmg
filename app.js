@@ -1,114 +1,143 @@
-const cases=[
-{id:1,title:'D.B. Cooper — Người biến mất giữa trời',year:'1971',level:'ĐẶC BIỆT',status:'CHƯA GIẢI QUYẾT',intro:'Một người đàn ông dùng bí danh Dan Cooper cướp một máy bay, yêu cầu tiền chuộc rồi nhảy dù xuống màn đêm. Danh tính thật chưa được xác định chắc chắn.',clues:['Vé máy bay và lời khai cho thấy người này dùng tên Dan Cooper.','Ông ta mang theo dù và tiền chuộc.','Sau khi máy bay cất cánh lại, ông ta biến mất.'],timeline:['24/11/1971 — lên chuyến bay Northwest Orient 305.','Trong chuyến bay — đưa yêu cầu tiền chuộc và dù.','Sau khi máy bay cất cánh lại — nhảy dù và biến mất.'],suspects:[['Richard McCoy','Từng là nghi phạm nhưng bị loại khỏi danh sách'],['D.B. Cooper','Bí danh; danh tính thật chưa xác định'],['Jack Davis','Một giả thuyết khác'],['Không đủ dữ kiện','Không thể kết luận chắc chắn']],answer:1,source:'FBI Major Cases'},
-{id:2,title:'Black Dahlia — Hồ sơ chưa có lời giải',year:'1947',level:'ĐẶC BIỆT',status:'CHƯA GIẢI QUYẾT',intro:'Một vụ án nổi tiếng tại Los Angeles năm 1947. Cuộc điều tra kéo dài nhưng thủ phạm chưa được xác định chính thức.',clues:['Thi thể được phát hiện tại Los Angeles ngày 15/1/1947.','FBI xác định nạn nhân là Elizabeth Short.','Thủ phạm chưa bao giờ được xác định.'],timeline:['15/1/1947 — phát hiện nạn nhân.','1947 — điều tra quy mô lớn.','Sau nhiều thập kỷ — chưa có kết luận chính thức.'],suspects:[['George Hodel','Tên từng xuất hiện trong các giả thuyết'],['Mark Hansen','Tên từng xuất hiện trong tài liệu vụ án'],['Thủ phạm chưa xác định','Kết luận an toàn theo hồ sơ chính thức'],['Một nhân vật khác','Không đủ chứng cứ']],answer:2,source:'FBI Major Cases'},
-{id:3,title:'Alcatraz Escape — Ba người biến mất',year:'1962',level:'ĐẶC BIỆT',status:'BÍ ẨN',intro:'Ba tù nhân thực hiện cuộc vượt ngục khỏi đảo Alcatraz. Số phận sau khi rời đảo vẫn là bí ẩn.',clues:['Frank Morris và hai anh em John, Clarence Anglin là ba người bỏ trốn.','Các đầu giả bằng vật liệu giả được dùng để đánh lừa lính gác.','FBI không có bằng chứng chắc chắn về việc họ sống hay chết.'],timeline:['12/6/1962 — phát hiện cuộc vượt ngục.','Sau đó — tìm kiếm quanh vịnh.','Nhiều năm sau — số phận vẫn chưa rõ.'],suspects:[['Frank Morris','Một trong ba người vượt ngục'],['John Anglin','Một trong ba người vượt ngục'],['Clarence Anglin','Một trong ba người vượt ngục'],['Cả ba','Hồ sơ không chứng minh chắc chắn số phận']],answer:3,source:'FBI Major Cases'},
-{id:4,title:'Brink’s Robbery — Vụ cướp Boston 1950',year:'1950',level:'ĐẶC BIỆT',status:'ĐÃ PHÁ',intro:'Một vụ cướp có tổ chức tại Boston tạo ra cuộc truy lùng quy mô lớn. Dấu vết vật chứng và điều tra dẫn tới nhóm thủ phạm.',clues:['Vụ cướp xảy ra ngày 17/1/1950 tại Boston.','Bọn cướp dùng mặt nạ và băng keo để khống chế nhân viên.','FBI ghi nhận đây là một trong những vụ cướp lớn nổi tiếng.'],timeline:['17/1/1950 — xảy ra vụ cướp.','Sau vụ án — điều tra và truy tìm nhóm.','1950 — nhiều nghi phạm bị bắt và truy tố.'],suspects:[['Nhóm Brink’s Robbery','Nhóm tội phạm chịu trách nhiệm'],['Một nhân viên ngân hàng','Không phải kết luận chính thức'],['Một băng nhóm khác','Không đủ dữ kiện'],['Không ai','Sai']],answer:0,source:'FBI Major Cases'},
-{id:5,title:'Medgar Evers — Công lý sau nhiều thập kỷ',year:'1963',level:'ĐẶC BIỆT',status:'ĐÃ PHÁ',intro:'Một vụ sát hại gây chấn động tại Mississippi. Công lý cuối cùng đến sau hơn ba thập kỷ.',clues:['Vụ án xảy ra ngày 12/6/1963 tại Jackson, Mississippi.','Cuộc điều tra kéo dài nhiều năm.','Byron De La Beckwith cuối cùng bị kết án năm 1994.'],timeline:['12/6/1963 — xảy ra vụ sát hại.','Nhiều năm — hồ sơ tiếp tục được xem xét.','1994 — Beckwith bị kết án.'],suspects:[['Byron De La Beckwith','Người cuối cùng bị kết án'],['Một nhân chứng','Không phải thủ phạm'],['Một người lạ','Không có căn cứ'],['Không xác định','Sai']],answer:0,source:'FBI Civil Rights'},
-{id:6,title:'Dixie Mafia — Hồ sơ Mississippi',year:'1980s',level:'ĐẶC BIỆT',status:'ĐÃ PHÁ',intro:'Một vụ án tại Mississippi gắn với mạng lưới tội phạm có tổ chức và cuộc điều tra kéo dài.',clues:['Hồ sơ liên quan Judge Vincent Sherry và Margaret Sherry.','Cuộc điều tra lần theo mạng lưới tội phạm.','FBI dùng vụ án để làm rõ hoạt động của Dixie Mafia.'],timeline:['1980s — vụ án xảy ra.','Điều tra — lần theo mạng lưới.','Sau đó — các đối tượng liên quan bị truy tố.'],suspects:[['Dixie Mafia','Mạng lưới được FBI liên hệ với hồ sơ'],['Một nhóm dân sự','Không có căn cứ'],['Một tai nạn','Sai'],['Không có thủ phạm','Sai']],answer:0,source:'FBI Major Cases'},
-{id:7,title:'Patty Hearst — Vụ bắt cóc gây chấn động',year:'1974',level:'ĐẶC BIỆT',status:'ĐÃ PHÁ',intro:'Một nữ sinh viên 19 tuổi bị bắt cóc tại Berkeley. Cuộc điều tra dẫn tới tổ chức SLA.',clues:['Vụ bắt cóc xảy ra ngày 4/2/1974 tại Berkeley.','Symbionese Liberation Army đứng sau vụ bắt cóc.','FBI truy tìm những người liên quan trong thời gian dài.'],timeline:['4/2/1974 — Patty Hearst bị bắt cóc.','Sau đó — SLA công bố yêu sách.','1975 — Hearst được tìm thấy và bắt giữ cùng thành viên SLA.'],suspects:[['Symbionese Liberation Army','Nhóm thực hiện vụ bắt cóc'],['Một nhóm sinh viên','Sai'],['Một băng cướp ngân hàng','Sai'],['Không rõ','Sai']],answer:0,source:'FBI Centennial History'},
-{id:8,title:'Mississippi Burning — Ba người mất tích',year:'1964',level:'ĐẶC BIỆT',status:'ĐÃ PHÁ',intro:'Ba nhân viên dân quyền mất tích tại Mississippi năm 1964. Vụ án trở thành một cuộc điều tra lớn của FBI.',clues:['James Chaney, Andrew Goodman và Michael Schwerner mất tích.','Họ mất tích ngày 21/6/1964.','Các thành viên KKK liên quan bị điều tra và truy tố.'],timeline:['21/6/1964 — ba người mất tích.','Mùa hè 1964 — tìm kiếm và điều tra quy mô lớn.','Sau đó — nhiều người bị truy tố.'],suspects:[['Các thành viên KKK liên quan','Nhóm bị điều tra và truy tố'],['Một vụ tai nạn','Sai'],['Một nhóm khách du lịch','Sai'],['Không có điều tra','Sai']],answer:0,source:'FBI Civil Rights'},
-{id:9,title:'James Ricks — Cold case được giải',year:'1967',level:'ĐẶC BIỆT',status:'ĐÃ PHÁ',intro:'Một vụ án từ năm 1967 được giải sau nhiều thập kỷ, cho thấy giá trị của việc điều tra lại cold case.',clues:['James Ricks bị giết sau khi xe của ông bị cướp.','Vụ án xảy ra tại North Little Rock, Arkansas.','Hồ sơ được điều tra lại sau nhiều thập kỷ.'],timeline:['1967 — vụ án xảy ra.','Nhiều thập kỷ — hồ sơ nguội.','Sau đó — FBI công bố câu chuyện về việc thủ phạm bị đưa ra công lý.'],suspects:[['Hai tên cướp liên quan','Liên quan trực tiếp đến vụ án'],['Một người qua đường','Không đủ căn cứ'],['Không ai','Sai'],['Tai nạn','Sai']],answer:0,source:'FBI Cold Case'},
-{id:10,title:'Tonya Hughes — Bí ẩn kéo dài hàng thập kỷ',year:'1990',level:'ĐẶC BIỆT',status:'ĐÃ PHÁ',intro:'Một cái chết đáng ngờ tại Oklahoma City mở ra câu hỏi về danh tính và một vụ án khác kéo dài nhiều năm.',clues:['Tonya Hughes bị xe tông năm 1990 và qua đời sau đó.','Điều tra về cái chết mở ra nhiều câu hỏi về danh tính.','FBI sau đó điều tra mối liên hệ với vụ án Michael Hughes.'],timeline:['1990 — Tonya Hughes gặp tai nạn.','Sau đó — xuất hiện nghi vấn về danh tính.','Nhiều năm — điều tra mở rộng.'],suspects:[['Franklin Delano Floyd','Nhân vật trung tâm của hồ sơ FBI'],['Một tài xế vô danh','Không đủ dữ kiện'],['Một nhân viên bệnh viện','Sai'],['Không liên quan','Sai']],answer:0,source:'FBI Cold Case'}
+const QUESTION_BANK = [
+["Khi có một vấn đề bất ngờ, bạn thường bình tĩnh tìm cách giải quyết.","Luôn luôn","Thường xuyên","Đôi khi","Hiếm khi","Hầu như không"],
+["Bạn dễ bắt chuyện với một người mới gặp.","Rất đúng","Khá đúng","Phân vân","Không đúng lắm","Hoàn toàn không"],
+["Khi bị làm phiền, bạn có thể nóng giận rất nhanh.","Rất đúng","Khá đúng","Phân vân","Không đúng lắm","Hoàn toàn không"],
+["Bạn thường suy nghĩ kỹ trước khi hành động.","Luôn luôn","Thường xuyên","Đôi khi","Hiếm khi","Hầu như không"],
+["Bạn cảm thấy thoải mái khi ở một mình trong thời gian dài.","Rất đúng","Khá đúng","Phân vân","Không đúng lắm","Hoàn toàn không"],
+["Khi kế hoạch thay đổi vào phút cuối, bạn dễ thích nghi.","Rất đúng","Khá đúng","Phân vân","Không đúng lắm","Hoàn toàn không"],
+["Bạn thường nghĩ đến cảm xúc của người khác trước khi quyết định.","Luôn luôn","Thường xuyên","Đôi khi","Hiếm khi","Hầu như không"],
+["Bạn có xu hướng hành động ngay rồi mới suy nghĩ về hậu quả.","Rất đúng","Khá đúng","Phân vân","Không đúng lắm","Hoàn toàn không"],
+["Bạn dễ lấy lại tinh thần sau một thất bại.","Rất đúng","Khá đúng","Phân vân","Không đúng lắm","Hoàn toàn không"],
+["Trong nhóm bạn thường là người tạo không khí vui vẻ.","Rất đúng","Khá đúng","Phân vân","Không đúng lắm","Hoàn toàn không"],
+["Bạn thường giữ được bình tĩnh khi bị phê bình.","Luôn luôn","Thường xuyên","Đôi khi","Hiếm khi","Hầu như không"],
+["Bạn thích thử những điều mới dù chưa chắc kết quả.","Rất đúng","Khá đúng","Phân vân","Không đúng lắm","Hoàn toàn không"],
+["Bạn thường hoàn thành việc đã bắt đầu.","Luôn luôn","Thường xuyên","Đôi khi","Hiếm khi","Hầu như không"],
+["Bạn dễ bị cảm xúc của người khác ảnh hưởng.","Rất đúng","Khá đúng","Phân vân","Không đúng lắm","Hoàn toàn không"],
+["Khi tranh luận, bạn có thể chấp nhận mình sai.","Luôn luôn","Thường xuyên","Đôi khi","Hiếm khi","Hầu như không"],
+["Bạn thường lo lắng về những chuyện chưa xảy ra.","Rất đúng","Khá đúng","Phân vân","Không đúng lắm","Hoàn toàn không"],
+["Bạn thích có nhiều người xung quanh hơn là ở một mình.","Rất đúng","Khá đúng","Phân vân","Không đúng lắm","Hoàn toàn không"],
+["Bạn kiểm soát được lời nói khi đang rất tức giận.","Rất tốt","Khá tốt","Ở mức vừa","Khó","Rất khó"],
+["Bạn thường tìm được điểm tích cực trong hoàn cảnh khó khăn.","Luôn luôn","Thường xuyên","Đôi khi","Hiếm khi","Hầu như không"],
+["Bạn có quyết định nhanh khi phải lựa chọn.","Rất đúng","Khá đúng","Phân vân","Không đúng lắm","Hoàn toàn không"],
+["Bạn dễ cảm thấy hào hứng với một ý tưởng mới.","Rất đúng","Khá đúng","Phân vân","Không đúng lắm","Hoàn toàn không"],
+["Bạn thường cần nhiều thời gian để tin tưởng một người.","Rất đúng","Khá đúng","Phân vân","Không đúng lắm","Hoàn toàn không"],
+["Bạn giữ lời hứa ngay cả khi điều đó gây bất tiện.","Luôn luôn","Thường xuyên","Đôi khi","Hiếm khi","Hầu như không"],
+["Bạn có thể tập trung lâu vào một việc quan trọng.","Rất dễ","Khá dễ","Bình thường","Khá khó","Rất khó"],
+["Bạn thường chủ động giúp người khác khi họ cần.","Luôn luôn","Thường xuyên","Đôi khi","Hiếm khi","Hầu như không"],
+["Bạn dễ thay đổi tâm trạng trong ngày.","Rất đúng","Khá đúng","Phân vân","Không đúng lắm","Hoàn toàn không"],
+["Bạn thấy tự tin khi phải trình bày ý kiến trước nhiều người.","Rất tự tin","Khá tự tin","Bình thường","Hơi ngại","Rất ngại"],
+["Bạn thường cân nhắc rủi ro trước khi thử một việc mạo hiểm.","Luôn luôn","Thường xuyên","Đôi khi","Hiếm khi","Hầu như không"],
+["Bạn có thể tha thứ sau khi ai đó chân thành xin lỗi.","Rất dễ","Khá dễ","Tùy trường hợp","Khá khó","Rất khó"],
+["Bạn thường tự đặt mục tiêu để phát triển bản thân.","Rất thường xuyên","Thường xuyên","Đôi khi","Hiếm khi","Hầu như không"]
 ];
-const pools={hard:10,medium:100,normal:1000};
 
-const portraitFor=(caseId,index)=>`images/portraits/person-${String(((caseId-1)*4+index)%8+1).padStart(2,'0')}.jpg`;
-const people={
-1:[['D.B. Cooper','Danh tính chưa xác định','Người dùng bí danh Dan Cooper; sau vụ cướp máy bay năm 1971, ông ta nhảy dù và biến mất.'],['Richard Floyd McCoy, Jr.','Nghi phạm từng được xem xét','Thực hiện một vụ không tặc bằng dù năm 1972; FBI từng xem xét nhưng loại khỏi danh sách D.B. Cooper vì các điểm không phù hợp.'],['Florence Schaffner','Tiếp viên hàng không','Một trong các thành viên phi hành đoàn tương tác với kẻ không tặc trong vụ năm 1971.']],
-2:[['Elizabeth Short','Nạn nhân','Người phụ nữ 22 tuổi được xác định là nạn nhân của vụ Black Dahlia năm 1947.'],['FBI','Cơ quan hỗ trợ điều tra','Hỗ trợ LAPD xác định danh tính Elizabeth Short qua dấu vân tay và kiểm tra các hướng điều tra.'],['LAPD','Cơ quan điều tra địa phương','Dẫn đầu cuộc điều tra vụ án tại Los Angeles.']],
-3:[['Frank Morris','Người vượt ngục','Tù nhân được FBI mô tả là người giữ vai trò dẫn đầu trong kế hoạch vượt ngục.'],['John Anglin','Người vượt ngục','Một trong ba tù nhân rời khỏi phòng giam trong đêm 12/6/1962.'],['Clarence Anglin','Người vượt ngục','Anh/em của John Anglin và là thành viên thứ ba trong nhóm.'],['Allen West','Người tham gia kế hoạch','Hỗ trợ kế hoạch nhưng không kịp rời phòng giam.']],
-4:[['Anthony Pino','Thành viên chủ chốt','FBI mô tả Pino là một trong những người bị nghi ngờ và có vai trò quan trọng trong việc lên kế hoạch.'],['Joseph O’Keefe','Thành viên chủ chốt','Được FBI xác định là nhân vật trung tâm; năm 1956 cung cấp lời khai chi tiết về vụ cướp.'],['Stanley Gusciora','Thành viên nhóm','Được tuyển vào kế hoạch cùng O’Keefe và bị kết án liên quan vụ cướp.'],['Vincent Costa','Người cảnh giới','FBI ghi nhận Costa đứng ở vị trí quan sát và phát tín hiệu cho nhóm.']],
-5:[['Medgar Evers','Nạn nhân / lãnh đạo dân quyền','Cựu binh Thế chiến II, nhà hoạt động dân quyền và thư ký hiện trường đầu tiên của NAACP tại Mississippi.'],['Myrlie Evers','Gia đình / nhà hoạt động','Vợ của Medgar Evers; sau này thúc đẩy việc mở lại vụ án.'],['Byron De La Beckwith','Thủ phạm bị kết án','Bị FBI liên hệ với vụ án qua dấu vân tay trên súng và cuối cùng bị kết án năm 1994.']],
-6:[['Vincent Sherry','Nạn nhân / thẩm phán','Thẩm phán cấp bang tại Mississippi, bị sát hại cùng vợ năm 1987.'],['Margaret Sherry','Nạn nhân','Vợ của Vincent Sherry, cũng bị sát hại trong vụ án.'],['Pete Halat','Nhân vật trung tâm điều tra','Luật sư và cựu thị trưởng Biloxi; bị kết án năm 1997 với vai trò liên quan vụ án.'],['Kirksey McCord Nix','Nhân vật chủ mưu','FBI Jackson History cho biết Nix, khi đang thụ án tại Angola, đã ra lệnh thực hiện vụ giết hại.']],
-7:[['Patty Hearst','Nạn nhân / nhân vật trung tâm','Sinh viên 19 tuổi bị SLA bắt cóc năm 1974; sau đó bị bắt và bị kết tội liên quan vụ cướp ngân hàng.'],['Donald DeFreeze','Lãnh đạo SLA','FBI mô tả DeFreeze là thủ lĩnh của Symbionese Liberation Army, nhóm bắt cóc Hearst.'],['Symbionese Liberation Army','Tổ chức','Nhóm cực đoan thực hiện vụ bắt cóc và các hoạt động phạm pháp liên quan.']],
-8:[['Michael Schwerner','Nạn nhân / nhà hoạt động','Nhân viên dân quyền 24 tuổi tham gia Freedom Summer tại Mississippi.'],['James Chaney','Nạn nhân / nhà hoạt động','Một trong ba nhân viên dân quyền mất tích và bị sát hại năm 1964.'],['Andrew Goodman','Nạn nhân / nhà hoạt động','Tình nguyện viên dân quyền đi cùng Schwerner và Chaney.'],['Cecil Price','Cựu phó cảnh sát trưởng','Người đã bắt giữ ba người tại Philadelphia, Mississippi, trước khi họ mất tích.'],['Edgar Ray Killen','Kẻ chủ mưu bị kết án sau này','Một nhân vật chủ chốt trong vụ án, bị kết án tội ngộ sát năm 2005.']],
-9:[['James Ricks','Nạn nhân','Cha của một con gái, bị giết năm 1967 sau khi hai tên cướp lấy xe của ông.'],['James Leon Clay','Thủ phạm bị kết án','Bị bắt lại sau gần 50 năm và nhận tội giết Ricks; bị kết án 20 năm.'],['Leon Junior Clay','Đồng phạm trong vụ cướp','Anh/em của James Leon Clay; cùng bị kết án về tội trộm xe và các vụ cướp trước đó.'],['Justin Downen','Điều tra viên FBI','Đặc vụ FBI tiếp nhận lời khai giúp mở lại hướng điều tra vụ án.']],
-10:[['Tonya Hughes / Suzanne Marie Sevakis','Nạn nhân / danh tính được xác định','FBI xác định Tonya Hughes thực chất là Suzanne Marie Sevakis sau 24 năm điều tra.'],['Franklin Delano Floyd','Nhân vật trung tâm của hồ sơ','Kẻ bỏ trốn lâu năm; FBI liên hệ ông ta với cái chết của Tonya và vụ mất tích của Michael Hughes.'],['Michael Hughes','Nạn nhân','Con trai của Tonya; FBI cho biết Floyd đã thú nhận giết cậu bé.'],['Scott Lobb','Điều tra viên FBI','Đặc vụ tham gia cuộc điều tra cold case tại Oklahoma City.']]
+const TRAITS = [
+  {name:"Ổn định cảm xúc", keys:[0,8,10,18,25], invert:false},
+  {name:"Hòa đồng", keys:[1,9,16,26], invert:false},
+  {name:"Kiểm soát nóng giận", keys:[2,7,10,17], invert:true},
+  {name:"Thận trọng", keys:[3,12,22,23,27], invert:false},
+  {name:"Cởi mở & khám phá", keys:[5,11,20,29], invert:false},
+  {name:"Đồng cảm", keys:[6,13,24,28], invert:false},
+  {name:"Tâm lý vững", keys:[8,10,18,19,21], invert:false}
+];
+
+const screens = {
+  home:document.querySelector("#home"),
+  quiz:document.querySelector("#quiz"),
+  result:document.querySelector("#result")
 };
+let questions=[], index=0, selected=-1, answers=[], currentScores=[];
 
-const branchDetails={
-1:[['Nạn nhân: D.B. Cooper','Người sử dụng bí danh Dan Cooper trong vụ không tặc năm 1971. Danh tính thật chưa được xác định chắc chắn.']],
-2:[['Nạn nhân: Elizabeth Short','Nạn nhân của vụ Black Dahlia, được xác định tại Los Angeles năm 1947.']],
-3:[['Nạn nhân: Hồ sơ Alcatraz','Không có nạn nhân tử vong được xác nhận; đây là hồ sơ vượt ngục của ba tù nhân.']],
-4:[['Nạn nhân: Nhân viên Brink’s','Nhân viên kho tiền bị khống chế trong vụ cướp Boston năm 1950.']],
-5:[['Nạn nhân: Medgar Evers','Nhà hoạt động dân quyền bị sát hại tại Mississippi năm 1963.']],
-6:[['Nạn nhân: Vincent & Margaret Sherry','Hai nạn nhân bị sát hại tại Biloxi, Mississippi năm 1987.']],
-7:[['Nạn nhân: Patty Hearst','Nữ sinh viên 19 tuổi bị bắt cóc năm 1974.']],
-8:[['Nạn nhân: Schwerner, Chaney & Goodman','Ba nhân viên dân quyền mất tích và bị sát hại tại Mississippi năm 1964.']],
-9:[['Nạn nhân: James Ricks','Nạn nhân bị sát hại sau một vụ cướp xe tại Arkansas năm 1967.']],
-10:[['Nạn nhân: Tonya Hughes / Suzanne Sevakis','Người phụ nữ được biết dưới tên Tonya Hughes; FBI sau đó xác định danh tính thật.']]
+function shuffle(a){return [...a].sort(()=>Math.random()-0.5)}
+
+function newTest(){
+  questions=shuffle(QUESTION_BANK).slice(0,20);
+  index=0; selected=-1; answers=[];
+  show("quiz"); renderQuestion();
+}
+
+function show(name){
+  Object.values(screens).forEach(x=>x.classList.remove("active"));
+  screens[name].classList.add("active");
+  window.scrollTo({top:0,behavior:"smooth"});
+}
+
+function renderQuestion(){
+  const q=questions[index];
+  selected=-1;
+  document.querySelector("#questionCount").textContent=`Câu ${index+1} / ${questions.length}`;
+  document.querySelector("#questionNumber").textContent=String(index+1).padStart(2,"0");
+  document.querySelector("#percent").textContent=Math.round(((index+1)/questions.length)*100)+"%";
+  document.querySelector("#progressBar").style.width=((index+1)/questions.length*100)+"%";
+  document.querySelector("#questionText").textContent=q[0];
+  const box=document.querySelector("#answers"); box.innerHTML="";
+  q.slice(1).forEach((text,i)=>{
+    const b=document.createElement("button");
+    b.className="answer"; b.type="button"; b.textContent=text;
+    b.onclick=()=>selectAnswer(i,b);
+    box.appendChild(b);
+  });
+  const next=document.querySelector("#nextBtn");
+  next.disabled=true;
+  next.textContent=index===questions.length-1?"Xem kết quả  →":"Tiếp tục  →";
+}
+
+function selectAnswer(i,btn){
+  selected=i;
+  document.querySelectorAll(".answer").forEach(x=>x.classList.remove("selected"));
+  btn.classList.add("selected");
+  document.querySelector("#nextBtn").disabled=false;
+}
+
+function finish(){
+  const raw=new Array(7).fill(0);
+  const count=new Array(7).fill(0);
+  questions.forEach((q,qi)=>{
+    const answer=answers[qi] ?? 2;
+    const value=(4-answer)/4;
+    TRAITS.forEach((t,ti)=>{
+      if(t.keys.includes(QUESTION_BANK.indexOf(q))){
+        raw[ti]+=t.invert?1-value:value; count[ti]++;
+      }
+    });
+  });
+  currentScores=raw.map((v,i)=>Math.round((v/(count[i]||1))*100));
+  renderResult();
+}
+
+function renderResult(){
+  show("result");
+  const bars=document.querySelector("#resultBars"); bars.innerHTML="";
+  const ranked=TRAITS.map((t,i)=>({name:t.name,score:currentScores[i]})).sort((a,b)=>b.score-a.score);
+  ranked.forEach(item=>{
+    const row=document.createElement("div"); row.className="bar-row";
+    row.innerHTML=`<div class="bar-label"><span>${item.name}</span><span>${item.score}%</span></div><div class="bar-bg"><div class="bar-fill" style="width:${item.score}%"></div></div>`;
+    bars.appendChild(row);
+  });
+  const top=ranked[0];
+  document.querySelector("#resultTitle").textContent=top.name;
+  document.querySelector("#resultText").textContent=getSummary(top.name,top.score);
+}
+
+function getSummary(name,score){
+  if(name==="Ổn định cảm xúc") return score>=75?"Bạn có xu hướng giữ cân bằng tốt trước những thay đổi và áp lực. Bạn thường có khả năng nhìn sự việc tương đối rõ ràng thay vì để cảm xúc dẫn dắt hoàn toàn.":"Bạn có khả năng ổn định cảm xúc khá tốt, nhưng trong một số tình huống áp lực bạn vẫn có thể cần thời gian để cân bằng lại.";
+  if(name==="Hòa đồng") return score>=75?"Bạn có xu hướng cởi mở, dễ kết nối và tạo năng lượng tích cực trong các mối quan hệ.":"Bạn có khả năng giao tiếp tốt nhưng cũng coi trọng khoảng thời gian riêng và những mối quan hệ có chiều sâu.";
+  if(name==="Kiểm soát nóng giận") return score>=75?"Bạn thường biết cách dừng lại trước khi phản ứng và có khả năng kiểm soát hành vi khi cảm xúc tăng cao.":"Khi cảm xúc mạnh xuất hiện, bạn có thể phản ứng khá nhanh. Việc tạm dừng vài giây trước khi hành động có thể giúp bạn xử lý tình huống tốt hơn.";
+  if(name==="Thận trọng") return score>=75?"Bạn thường cân nhắc hậu quả và thích có cơ sở trước khi quyết định. Đây là lợi thế trong những lựa chọn cần sự chắc chắn.":"Bạn có xu hướng cân bằng giữa suy nghĩ và hành động, tùy vào mức độ quan trọng của tình huống.";
+  if(name==="Cởi mở & khám phá") return score>=75?"Bạn khá thích trải nghiệm mới, ý tưởng mới và thường tò mò với những điều khác biệt.":"Bạn có xu hướng chọn lọc trải nghiệm mới, thường thích những điều đã có đủ cơ sở hoặc phù hợp với mình.";
+  if(name==="Đồng cảm") return score>=75?"Bạn nhạy với cảm xúc của người khác và thường quan tâm đến tác động của lời nói, hành động lên mọi người.":"Bạn biết quan tâm đến người khác nhưng vẫn có xu hướng giữ ranh giới cảm xúc của riêng mình.";
+  return score>=75?"Bạn có nhiều dấu hiệu của sự vững vàng tâm lý: biết phục hồi, giữ bình tĩnh và tìm hướng đi khi gặp khó khăn.":"Bạn có nền tảng tâm lý tương đối ổn và có thể tiếp tục củng cố khả năng phục hồi qua trải nghiệm.";
+}
+
+document.querySelector("#startBtn").onclick=newTest;
+document.querySelector("#againBtn").onclick=newTest;
+document.querySelector("#resetBtn").onclick=()=>show("home");
+document.querySelector("#nextBtn").onclick=()=>{
+  answers.push(selected);
+  if(index<questions.length-1){index++;renderQuestion()}else finish();
 };
-
-const branchTitles=['NẠN NHÂN','MANH MỐI HIỆN TRƯỜNG','DÒNG THỜI GIAN','NHÂN VẬT LIÊN QUAN','NÚT THẮT'];
-const branchNarratives=[
-'Bắt đầu bằng người bị hại. Xác định danh tính và dữ kiện nào đã được xác nhận.',
-'Một chi tiết nhỏ trở thành manh mối. Đừng bỏ qua vật chứng hoặc lời khai.',
-'Ghép các mốc thời gian để tìm điểm bất thường và loại trừ giả thuyết sai.',
-'Đặt nhân vật vào đúng vai trò: nạn nhân, nghi phạm, nhân chứng hay điều tra viên.',
-'Kết nối các dữ kiện. Chỉ kết luận trong phạm vi bằng chứng mà hồ sơ cung cấp.'
-];
-
-const branchTemplates=[
-['HỒ SƠ GỐC','Đọc bối cảnh và xác định điều gì chắc chắn đã xảy ra.','Gợi ý: ưu tiên dữ kiện được hồ sơ chính thức ghi nhận.'],
-['VẬT CHỨNG','Một vật chứng hoặc dấu hiệu quan trọng xuất hiện. Hãy xem nó loại trừ lựa chọn nào.','Gợi ý: vật chứng có giá trị hơn suy đoán về động cơ.'],
-['DÒNG THỜI GIAN','Đối chiếu thời điểm và thứ tự sự kiện. Một chi tiết sai thời gian có thể làm hỏng cả giả thuyết.','Gợi ý: ghép sự kiện theo thứ tự trước–sau.'],
-['NGHI PHẠM / GIẢ THUYẾT','Một cái tên hoặc nhóm người được đưa vào hồ sơ. Không phải cái tên nào cũng là kết luận cuối cùng.','Gợi ý: phân biệt “từng bị nghi” với “đã được chứng minh”.'],
-['NÚT THẮT','Bạn đã có đủ dữ kiện để đưa ra kết luận trong phạm vi game.','Gợi ý: chọn đáp án phù hợp nhất với dữ kiện, không suy diễn thêm.']
-];
-const visualThemes=['plane','dahlia','prison','robbery','civil','mafia','kidnap','civil2','cold','mystery'];
-const visualLabels=['DẤU VẾT TRÊN CHUYẾN BAY','HỒ SƠ LOS ANGELES','BỨC TƯỜNG VƯỢT NGỤC','VẬT CHỨNG VỤ CƯỚP','HỒ SƠ MISSISSIPPI','MẠNG LƯỚI TỘI PHẠM','HỒ SƠ BẮT CÓC','CUỘC ĐIỀU TRA DÂN QUYỀN','COLD CASE','HỒ SƠ DANH TÍNH'];
-let mode='hard',queue=[],current=null,hints=3,score=0,tab='summary',branch=0,branchHints=[];
-const $=id=>document.getElementById(id);
-function show(id){document.querySelectorAll('.screen').forEach(s=>s.classList.remove('active'));$(id).classList.add('active');scrollTo(0,0)}
-function buildQueue(selectedMode){mode=selectedMode;let n=pools[mode],out=[];for(let i=0;i<n;i++){let base=cases[i%cases.length];out.push({...base,gameId:i+1});}return out.sort(()=>Math.random()-.5)}
-function start(selectedMode='hard'){queue=buildQueue(selectedMode);score=0;openCase(queue.pop())}
-function openCase(c){current=c;hints=3;tab='summary';branch=0;branchHints=[];$('hintCount').textContent=hints;$('resultMsg').textContent='';$('caseId').textContent=String(c.gameId).padStart(3,'0');$('caseTitle').textContent=c.title;$('caseYear').textContent=c.year;$('difficultyTag').textContent=mode==='hard'?'ĐẶC BIỆT':mode==='medium'?'KHÁ KHÓ':'BÌNH THƯỜNG';$('caseCounter').textContent=queue.length+1;$('caseIntro').textContent=c.intro;renderBranch();renderSuspects(false);renderPeople();show('case')}
-function renderBranch(){
- const c=current,t=branchTemplates[branch],detail=branchDetails[c.id][0],plist=people[c.id]||[],person=plist[branch%Math.max(1,plist.length)],clue=c.clues[branch%c.clues.length];
- $('branchNumber').textContent=`NHÁNH ${branch+1}/5`;
- $('branchTitle').textContent=branchTitles[branch];
- $('branchText').textContent=branch===0?detail[1]:branchNarratives[branch];
- $('branchHint').textContent=t[2];$('branchHint').classList.toggle('show',!!branchHints[branch]);
- $('victimImage').src=`images/case-${c.id}.png`;$('victimImage').alt=`Hình minh họa ${detail[0]}`;$('victimImage').dataset.type='victim';
- $('victimName').textContent=detail[0].replace('Nạn nhân: ','');$('victimInfo').textContent=detail[1];$('victimStatus').textContent=c.status;
- $('clueNumber').textContent=`CLUE ${String(branch+1).padStart(2,'0')}`;$('branchClueTitle').textContent=branch===0?'Dữ kiện mở hồ sơ':branchTitles[branch];$('branchClue').textContent=clue;$('clueFileCode').textContent=`HMG-${String(c.gameId).padStart(3,'0')}-${String(branch+1).padStart(2,'0')}`;
- if(person){$('relatedName').textContent=person[0];$('relatedRole').textContent=person[1];$('relatedInfo').textContent=person[2];$('relatedAvatar').innerHTML=`<img src="${portraitFor(c.id,branch%Math.max(1,plist.length))}" alt="Ảnh AI mô phỏng ${person[0]}">`;$('relatedAvatar').dataset.type='person';$('relatedAvatar').dataset.personIndex=String(branch%Math.max(1,plist.length))}
- $('relationTag').textContent=person?person[1].toUpperCase():'LIÊN QUAN';
- $('branchNext').textContent=branch<4?'Mở nhánh tiếp theo →':'Mở phần nghi phạm →';$('branchNext').disabled=false;renderTabs()
-}
-function renderTabs(){document.querySelectorAll('.clue').forEach(b=>b.classList.toggle('active',b.dataset.tab===tab));let c=current,html='';if(tab==='summary')html=`<p><b>Trạng thái:</b> ${c.status}</p><p><b>Nguồn:</b> ${c.source}</p><p>Game chia hồ sơ thành 5 nhánh để bạn suy luận từng bước.</p>`;if(tab==='clues')html='<ul>'+c.clues.map(x=>`<li>${x}</li>`).join('')+'</ul>';if(tab==='timeline')html='<ul>'+c.timeline.map(x=>`<li>${x}</li>`).join('')+'</ul>';$('tabContent').innerHTML=html}
-function renderPeople(){const box=$('peopleList');if(!box)return;box.innerHTML=(people[current.id]||[]).map((p,i)=>`<article class="person-card" tabindex="0" data-person-index="${i}"><div class="person-avatar"><img src="${portraitFor(current.id,i)}" alt="Ảnh mô phỏng ${p[0]}" loading="lazy"><span>${p[0].split(/\s+/).map(x=>x[0]).slice(0,2).join('')}</span></div><div><h4>${p[0]}</h4><span>${p[1]}</span><p>${p[2]}</p></div></article>`).join('')}
-function renderSuspects(showIt){$('suspectSection').style.display=showIt?'block':'none';let box=$('suspects');box.innerHTML='';current.suspects.forEach((s,i)=>{let b=document.createElement('button');b.className='suspect';b.innerHTML=`<b>${s[0]}</b><small>${s[1]}</small>`;b.onclick=()=>choose(i);box.appendChild(b)})}
-$('branchHintBtn').onclick=()=>{branchHints[branch]=true;$('branchHint').classList.add('show')};
-$('branchNext').onclick=()=>{if(branch<4){branch++;renderBranch()}else{renderSuspects(true);$('suspectSection').scrollIntoView({behavior:'smooth',block:'center'})}};
-function choose(i){document.querySelectorAll('.suspect').forEach(b=>b.disabled=true);let ok=i===current.answer;if(ok){score+=100-(hints*10);$('resultMsg').textContent='✓ Suy luận đúng.'}else{$('resultMsg').textContent='✕ Chưa đúng. Xem lại manh mối.'}setTimeout(()=>finish(ok),650)}
-function finish(ok){$('resultIcon').textContent=ok?'✓':'!';$('resultTitle').textContent=ok?'Hồ sơ được mở khóa':'Hồ sơ chưa được giải';$('resultDesc').textContent=ok?`Bạn đã khoanh đúng đáp án của hồ sơ “${current.title}”. Điểm cộng: ${100-(hints*10)}.`:`Đáp án trong game không thay thế kết luận điều tra ngoài đời. Hãy xem lại các nhánh và manh mối.`;$('score').textContent=score;show('result')}
-$('randomBtn').onclick=()=>start(['hard','medium','normal'][Math.floor(Math.random()*3)]);document.querySelectorAll('.mode').forEach(b=>b.onclick=()=>start(b.dataset.mode));$('backBtn').onclick=()=>show('home');$('nextBtn').onclick=()=>queue.length?openCase(queue.pop()):start(mode);$('retryBtn').onclick=()=>openCase(current);$('homeBtn').onclick=()=>show('home');document.querySelectorAll('.clue').forEach(b=>b.onclick=()=>{tab=b.dataset.tab;renderTabs()});$('hintBtn').onclick=()=>{if(hints<=0){$('resultMsg').textContent='Bạn đã dùng hết gợi ý.';return}hints--; $('hintCount').textContent=hints;let n=current.answer;let wrong=[0,1,2,3].filter(x=>x!==n)[0];document.querySelectorAll('.suspect')[wrong]?.style && (document.querySelectorAll('.suspect')[wrong].style.opacity='.35');$('resultMsg').textContent='Gợi ý: một lựa chọn đã được giảm độ tin cậy.'};
-const modal=$('aboutModal');const openModal=()=>{modal.classList.add('show');modal.setAttribute('aria-hidden','false')};const closeModal=()=>{modal.classList.remove('show');modal.setAttribute('aria-hidden','true')};$('aboutBtn').onclick=openModal;$('closeAbout').onclick=closeModal;$('aboutOk').onclick=closeModal;modal.querySelector('.backdrop').onclick=closeModal;document.addEventListener('keydown',e=>{if(e.key==='Escape')closeModal()});
-
-
-// --- Tương tác hồ sơ: ảnh, manh mối và nhân vật đều có thể bấm/chạm ---
-const detailModal=$('detailModal');
-function openDetail(kicker,title,text,media=''){
-  $('detailKicker').textContent=kicker;
-  $('detailTitle').textContent=title;
-  $('detailText').textContent=text;
-  $('detailMedia').innerHTML=media;
-  detailModal.classList.add('show');
-  detailModal.setAttribute('aria-hidden','false');
-}
-function closeDetail(){detailModal.classList.remove('show');detailModal.setAttribute('aria-hidden','true')}
-$('closeDetail').onclick=closeDetail;$('detailOk').onclick=closeDetail;detailModal.querySelector('.backdrop').onclick=closeDetail;
-$('victimImage').addEventListener('click',()=>{
-  const c=current,d=branchDetails[c.id][0];
-  openDetail('HỒ SƠ NẠN NHÂN',d[0],d[1],`<img class="detail-img" src="images/case-${c.id}.png" alt="Hồ sơ minh họa">`);
-});
-$('victimImage').style.cursor='zoom-in';
-$('clue-panel')?.addEventListener('click',()=>{});
-const cluePanel=document.querySelector('.clue-panel');
-if(cluePanel){cluePanel.style.cursor='pointer';cluePanel.addEventListener('click',()=>openDetail('HỒ SƠ MANH MỐI',$('branchClueTitle').textContent,$('branchClue').textContent,`<div class="evidence-detail">${$('clueFileCode').textContent}</div>`))}
-const personPanel=document.querySelector('.person-panel');
-if(personPanel){personPanel.style.cursor='pointer';personPanel.addEventListener('click',()=>openDetail('NHÂN VẬT LIÊN QUAN',$('relatedName').textContent,`${$('relatedRole').textContent}. ${$('relatedInfo').textContent}`,`<div class="person-detail-avatar image-avatar"><img src="${portraitFor(current.id,Number($('relatedAvatar').dataset.personIndex||0))}" alt="Ảnh AI mô phỏng ${$('relatedName').textContent}"></div>`))}
-$('peopleList').addEventListener('click',e=>{const card=e.target.closest('.person-card');if(!card||!current)return;const p=(people[current.id]||[])[Number(card.dataset.personIndex)];if(p)openDetail('HỒ SƠ NHÂN VẬT',p[0],`${p[1]}. ${p[2]}`,`<div class="person-detail-avatar image-avatar"><img src="${portraitFor(current.id,Number(card.dataset.personIndex))}" alt="Ảnh mô phỏng ${p[0]}"></div>`)})
-$('peopleList').addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();e.target.click()}});
-document.addEventListener('keydown',e=>{if(e.key==='Escape')closeDetail()});
+document.querySelector("#shareBtn").onclick=async()=>{
+  const text=`HMG — Phân tích tâm lý\nĐiểm nổi bật: ${document.querySelector("#resultTitle").textContent}`;
+  try{await navigator.clipboard.writeText(text);document.querySelector("#shareBtn").textContent="Đã sao chép ✓";setTimeout(()=>document.querySelector("#shareBtn").textContent="Chia sẻ kết quả",1500)}
+  catch{alert(text)}
+};

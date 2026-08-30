@@ -1,135 +1,83 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="vi">
 <head>
-<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>HMG — Hồ Sơ Phá Án</title>
-<link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#0797d5">
+  <title>HMG — Phân tích tâm lý</title>
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
-<div class="bg"></div>
-<main class="app">
-<section id="home" class="screen active">
-  <div class="badge">HMG • CASE FILES</div>
-  <h1>Hồ sơ <span>Phá Án</span></h1>
-  <p class="lead">Một game điều tra lấy cảm hứng từ những vụ án và bí ẩn có thật. Đọc manh mối, loại trừ nghi phạm và tìm đáp án.</p>
-  <div class="stats"><div><b>10</b><small>Hồ sơ đặc biệt</small></div><div><b>100</b><small>Khá khó</small></div><div><b>1000</b><small>Bình thường</small></div></div>
-  <div class="difficulty-grid">
-    <button class="mode hard" data-mode="hard"><span>01</span><b>HƠN 10 — ĐẶC BIỆT</b><small>Những hồ sơ bí ẩn, nhiều lớp manh mối</small></button>
-    <button class="mode medium" data-mode="medium"><span>02</span><b>100 — KHÁ KHÓ</b><small>Điều tra, đối chiếu và suy luận</small></button>
-    <button class="mode normal" data-mode="normal"><span>03</span><b>1000 — BÌNH THƯỜNG</b><small>Nhịp chơi nhanh, luyện khả năng suy luận</small></button>
-  </div>
-  <button id="randomBtn" class="primary">Chọn hồ sơ ngẫu nhiên <b>→</b></button>
-  <button id="aboutBtn" class="ghost">Giới thiệu kho hồ sơ</button>
-  <p class="note">Nội dung mang tính giáo dục/giải trí; các màn chơi được diễn giải lại, không phải hồ sơ điều tra chính thức.</p>
-</section>
+  <div class="bg-orb orb-a"></div>
+  <div class="bg-orb orb-b"></div>
 
-<section id="case" class="screen">
-  <div class="top"><button id="backBtn" class="icon">←</button><div class="brand">HMG</div><div id="caseCounter">01</div></div>
-  <div class="case-head"><span id="difficultyTag">ĐẶC BIỆT</span><span id="caseYear">—</span></div>
-  <div class="case-card">
-    <div class="case-title-row"><div><div class="eyebrow">HỒ SƠ #<span id="caseId">001</span></div><h2 id="caseTitle">...</h2></div><div class="case-mark">CASE</div></div>
-    <p id="caseIntro" class="intro"></p>
-    <div class="clues"><button class="clue active" data-tab="summary">Tóm tắt</button><button class="clue" data-tab="clues">Manh mối</button><button class="clue" data-tab="timeline">Dòng thời gian</button></div>
-    <div id="tabContent" class="tab-content"></div>
-    <div class="branch-card">
-      <div class="branch-meta"><span id="branchNumber">NHÁNH 1/5</span><span>HMG • EVIDENCE BOARD</span></div>
-      <div class="branch-heading"><div><div class="eyebrow">ĐIỀU TRA THEO NHÁNH</div><h3 id="branchTitle">NẠN NHÂN</h3><p id="branchText"></p></div><div class="branch-badge">LIVE CASE</div></div>
-      <div class="branch-evidence-grid">
-        <article class="evidence-panel victim-panel">
-          <div class="panel-label">01 • NẠN NHÂN</div>
-          <div class="victim-photo"><img id="victimImage" src="images/case-1.png" alt="Hình minh họa nạn nhân"><span id="victimStatus">NẠN NHÂN</span></div>
-          <h4 id="victimName">—</h4><p id="victimInfo">—</p>
-        </article>
-        <article class="evidence-panel clue-panel">
-          <div class="panel-label">02 • MANH MỐI</div>
-          <div class="clue-number" id="clueNumber">CLUE 01</div>
-          <h4 id="branchClueTitle">—</h4><p id="branchClue">—</p>
-          <div class="clue-file">FILE / EVIDENCE<br><b id="clueFileCode">HMG-001-A</b></div>
-        </article>
-        <article class="evidence-panel person-panel">
-          <div class="panel-label">03 • NHÂN VẬT LIÊN QUAN</div>
-          <div class="related-person"><div id="relatedAvatar" class="related-avatar"><img src="images/portraits/person-01.jpg" alt="Ảnh AI mô phỏng nhân vật"></div><div><h4 id="relatedName">—</h4><span id="relatedRole">—</span></div></div>
-          <p id="relatedInfo">—</p>
-          <div class="relation-tag" id="relationTag">LIÊN QUAN</div>
-        </article>
+  <main class="app">
+    <header class="topbar">
+      <div class="brand">
+        <div class="logo">HMG</div>
+        <div>
+          <h1>HMG</h1>
+          <p>Phân tích tâm lý</p>
+        </div>
       </div>
-      <div class="branch-hint"><span id="branchHint">Gợi ý</span></div>
-      <div class="branch-actions"><button id="branchHintBtn" class="ghost">💡 Mở gợi ý</button><button id="branchNext" class="primary">Mở nhánh tiếp theo →</button></div>
-    </div>
-    <section class="people-section">
-      <div class="section-kicker">HỒ SƠ NHÂN VẬT</div>
-      <h3>Các nhân vật liên quan</h3>
-      <p class="people-intro">Thông tin cơ bản để bạn phân biệt nạn nhân, nghi phạm, nhân chứng và người điều tra. Chỉ dùng dữ kiện đã được nguồn công khai ghi nhận.</p>
-      <div id="peopleList" class="people-list"></div>
+      <button id="resetBtn" class="ghost-btn" type="button">Làm lại</button>
+    </header>
+
+    <section id="home" class="screen active">
+      <div class="hero-card">
+        <span class="pill">TRẮC NGHIỆM CÁ NHÂN</span>
+        <h2>Hiểu bản thân<br><span>theo cách của bạn.</span></h2>
+        <p>HMG đưa ra các câu hỏi thay đổi liên tục để tìm hiểu xu hướng tính cách, cảm xúc và cách bạn phản ứng trong những tình huống khác nhau.</p>
+        <div class="features">
+          <div><b>01</b><span>Câu hỏi ngẫu nhiên</span></div>
+          <div><b>02</b><span>Phân tích nhiều chiều</span></div>
+          <div><b>03</b><span>Kết quả dễ hiểu</span></div>
+        </div>
+        <button id="startBtn" class="primary-btn" type="button">Bắt đầu phân tích <span>→</span></button>
+        <small>Kết quả chỉ mang tính tham khảo, không thay thế đánh giá chuyên môn.</small>
+      </div>
     </section>
-    <div id="suspectSection" class="suspect-section">
-      <div class="suspect-title">AI LÀ NGƯỜI CẦN BẠN KHOANH VÙNG?</div>
-      <div id="suspects" class="suspects"></div>
-      <div class="hint-row"><button id="hintBtn" class="ghost">💡 Gợi ý loại trừ <span id="hintCount">3</span></button><div id="resultMsg"></div></div>
-    </div>
-  </div>
-</section>
 
-<section id="result" class="screen">
-  <div class="badge">HMG • HỒ SƠ ĐÃ KHÓA</div>
-  <div id="resultIcon" class="result-icon">✓</div>
-  <h2 id="resultTitle">Kết luận</h2>
-  <p id="resultDesc" class="result-desc"></p>
-  <div class="score-box"><span>Điểm điều tra</span><strong id="score">0</strong></div>
-  <div class="actions"><button id="nextBtn" class="primary">Hồ sơ tiếp theo →</button><button id="retryBtn" class="ghost">Chơi lại hồ sơ</button><button id="homeBtn" class="ghost">Về trang đầu</button></div>
-</section>
-
-<div id="detailModal" class="modal" aria-hidden="true"><div class="backdrop"></div><div class="modal-box detail-box"><button id="closeDetail" class="close">×</button><div class="modal-kicker" id="detailKicker">HMG • CASE FILE</div><div id="detailMedia" class="detail-media"></div><h2 id="detailTitle">Chi tiết</h2><p id="detailText"></p><button id="detailOk" class="primary">Đóng hồ sơ</button></div></div>
-
-<div id="aboutModal" class="modal" aria-hidden="true"><div class="backdrop"></div><div class="modal-box"><button id="closeAbout" class="close">×</button><div class="modal-kicker">HMG • CASE FILES</div><h2>Không phải hồ sơ thật của cảnh sát</h2><p>Game dùng các vụ việc có thật làm nguồn cảm hứng, nhưng câu hỏi, lựa chọn và cách chấm điểm là thiết kế của game. Một số vụ vẫn chưa được giải quyết ngoài đời.</p><button id="aboutOk" class="primary">Hiểu rồi →</button></div></div>
-
-<section class="evidence-board">
-  <div class="section-kicker">HỒ SƠ NHÂN VẬT</div>
-  <h2>Manh mối liên quan</h2>
-  <div class="clue-grid">
-    <article class="clue-card victim"><span>01</span><b>Nạn nhân</b><p>Ai là người bị hại? Thông tin xác nhận danh tính, thời điểm và hoàn cảnh cuối cùng.</p></article>
-    <article class="clue-card suspect"><span>02</span><b>Nghi phạm</b><p>Người bị điều tra, lý do bị nghi ngờ và những điểm cần kiểm chứng.</p></article>
-    <article class="clue-card role"><span>03</span><b>Vai trò liên quan</b><p>Nhân chứng, người thân, đồng phạm, điều tra viên hoặc người xuất hiện trong dòng thời gian.</p></article>
-    <article class="clue-card timeline"><span>04</span><b>Dòng thời gian</b><p>Đối chiếu lời khai, địa điểm và thời điểm để tìm mâu thuẫn.</p></article>
-    <article class="clue-card evidence"><span>05</span><b>Vật chứng</b><p>Đồ vật, dấu vết hoặc tài liệu có liên hệ trực tiếp với vụ việc.</p></article>
-    <article class="clue-card unknown"><span>06</span><b>Điểm chưa rõ</b><p>Chi tiết chưa được chứng minh; người chơi không được coi giả thuyết là sự thật.</p></article>
-  </div>
-</section>
-
-<section class="cinema-dossier">
-  <div class="dossier-head">
-    <div>
-      <span class="section-kicker">HỒ SƠ HÌNH ẢNH</span>
-      <h2>Ảnh nhân vật &amp; vật chứng</h2>
-    </div>
-    <span class="case-stamp">CASE FILE</span>
-  </div>
-  <div class="dossier-grid">
-    <div class="mugshot">
-      <div class="mugshot-label">NGHI PHẠM A</div>
-      <div class="face face-a">
-        <i class="hair"></i><i class="eye e1"></i><i class="eye e2"></i>
-        <i class="nose"></i><i class="mouth"></i><i class="neck"></i>
+    <section id="quiz" class="screen">
+      <div class="quiz-card">
+        <div class="quiz-meta">
+          <span id="questionCount">Câu 1 / 20</span>
+          <span id="percent">5%</span>
+        </div>
+        <div class="progress"><div id="progressBar"></div></div>
+        <div class="question-wrap">
+          <div class="question-number" id="questionNumber">01</div>
+          <h2 id="questionText"></h2>
+          <p>Chọn mức độ phù hợp nhất với bạn.</p>
+        </div>
+        <div id="answers" class="answers"></div>
+        <button id="nextBtn" class="primary-btn next" type="button" disabled>Tiếp tục <span>→</span></button>
       </div>
-      <div class="mug-meta">ID: 0041 · STATUS: UNKNOWN</div>
-    </div>
-    <div class="mugshot">
-      <div class="mugshot-label">NHÂN CHỨNG B</div>
-      <div class="face face-b">
-        <i class="hair"></i><i class="eye e1"></i><i class="eye e2"></i>
-        <i class="nose"></i><i class="mouth"></i><i class="neck"></i>
+    </section>
+
+    <section id="result" class="screen">
+      <div class="result-card">
+        <span class="pill">KẾT QUẢ HMG</span>
+        <h2>Chân dung tâm lý của bạn</h2>
+        <p class="result-intro">Dựa trên các lựa chọn trong bài làm, đây là những xu hướng nổi bật nhất.</p>
+        <div id="resultBars"></div>
+        <div class="summary">
+          <div class="summary-icon">✦</div>
+          <div>
+            <h3 id="resultTitle"></h3>
+            <p id="resultText"></p>
+          </div>
+        </div>
+        <div class="result-actions">
+          <button id="againBtn" class="primary-btn" type="button">Làm bài khác</button>
+          <button id="shareBtn" class="secondary-btn" type="button">Chia sẻ kết quả</button>
+        </div>
+        <small>HMG không chẩn đoán bệnh lý tâm thần. Nếu bạn đang gặp khó khăn nghiêm trọng, hãy tìm đến chuyên gia phù hợp.</small>
       </div>
-      <div class="mug-meta">ID: 0087 · STATUS: INTERVIEWED</div>
-    </div>
-    <div class="evidence-photo">
-      <div class="photo-label">VẬT CHỨNG #07</div>
-      <div class="evidence-object"></div>
-      <div class="red-tape">EVIDENCE</div>
-      <div class="mug-meta">PHOTO LOG · 23:41</div>
-    </div>
-  </div>
-  <p class="image-note">Hình nhân vật là ảnh minh họa phong cách hồ sơ điều tra, dùng để tạo không khí game; không phải ảnh người thật.</p>
-</section>
-</main>
-<script src="app.js"></script>
-</body></html>
+    </section>
+  </main>
+
+  <footer>HMG • Personal Psychology Experience</footer>
+  <script src="app.js"></script>
+</body>
+</html>

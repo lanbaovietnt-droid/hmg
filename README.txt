@@ -1,10 +1,12 @@
-HMG — HỒ SƠ PHÁ ÁN
+# HMG — Phân tích tâm lý
 
-Bản cập nhật:
-- Có nhiều ảnh nhân vật AI mô phỏng khác nhau.
-- Mỗi hồ sơ nhân vật hiển thị ảnh, tên đầy đủ, vai trò và thông tin cơ bản.
-- Ảnh được gắn nhãn AI MÔ PHỎNG — KHÔNG PHẢI NGƯỜI THẬT.
-- Mỗi vụ án có nạn nhân, manh mối, nhân vật liên quan, 5 nhánh điều tra và phần chọn đáp án.
+Ứng dụng web độc lập, không cần backend và không cần cài thư viện.
 
-Chạy: mở index.html bằng trình duyệt hoặc dùng VS Code Live Server.
-Không cần cài thư viện.
+## Chạy
+Mở `index.html` bằng trình duyệt hoặc dùng VS Code Live Server.
+
+## Đưa lên máy khác
+Toàn bộ app nằm trong thư mục này. Có thể đưa thư mục lên GitHub Pages, Netlify, Vercel hoặc bất kỳ web hosting tĩnh nào.
+
+## Lưu ý
+Đây là trải nghiệm trắc nghiệm mang tính tham khảo, không phải công cụ chẩn đoán tâm lý/lâm sàng.
